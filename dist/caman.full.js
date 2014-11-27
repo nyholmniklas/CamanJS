@@ -1586,16 +1586,23 @@
     return img;
   };
 
+  Caman.prototype.toBase64 = function(type) {
+    if (type == null) {
+      type = "png";
+    }
+    return this.toBase64("image/" + type, 1);
+  };
+
   Caman.prototype.toBase64 = function(type, quality) {
     if (type == null) {
       type = "png";
     }
     if (quality == null) {
-      quality = 0.5;
+      quality = 1;
     }
     type = type.toLowerCase();
     if (0 > quality || quality > 1) {
-      quality = 0.5;
+      quality = 1;
     }
     return this.canvas.toDataURL("image/" + type, quality);
   };

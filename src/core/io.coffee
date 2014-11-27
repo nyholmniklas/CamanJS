@@ -105,12 +105,16 @@ Caman::toImage = (type) ->
 
     return img
 
+    # Base64 encodes the current canvas
+Caman::toBase64 = (type = "png") ->
+    return @toBase64 "image/#{type}", 1
+
   # Base64 encodes the current canvas
-Caman::toBase64 = (type = "png", quality = 0.5) ->
+Caman::toBase64 = (type = "png", quality = 1) ->
     type = type.toLowerCase()
 
     if 0 > quality or quality > 1
-      quality = 0.5
+      quality = 1
     return @canvas.toDataURL "image/#{type}", quality
 
 IO = Caman.IO
